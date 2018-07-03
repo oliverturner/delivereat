@@ -3,11 +3,36 @@
 
 <head>
   <title>DeliverEAT</title>
+  <link rel="stylesheet" type="text/css" href="/static/reset.css">
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 
 <body>
-  <div id="root"></div>
+  <div class="app" id="root">
+    <h1 class="title app__title">Mondo Gateaux</h1>
+    <div class="app__content">
+      <ul class="menu">
+        {{#each menu}}
+        <li class="card item">
+          <img class="item__image" src={{this.image}} />
+          <footer class="item__footer">
+            <p class="item__label">{{this.name}}</p>
+            <p class="item__price">£{{this.price}}</p>
+            <button class="item__control item__control--minus">
+              <img src="/static/icons/minus-circle.svg" alt="remove from basket">
+            </button>
+            <button class="item__control item__control--plus">
+              <img src="/static/icons/plus-circle.svg" alt="add to basket">
+            </button>
+          </footer>
+        </li>
+        {{/each}}
+      </ul>
+      <div class="card basket">
+        <h2 class="title basket__title">Your Basket</h2>
+      </div>
+    </div>
+  </div>
   <script src="/static/bundle.js"></script>
 </body>
 

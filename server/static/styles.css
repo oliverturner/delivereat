@@ -1,3 +1,124 @@
-body {
+:root {
+  --item-w: 220px;
+  --content-mt: 20px;
+  --colour-primary: aquamarine;
+}
+
+.card {
+  padding: 5px;
+  border: 2px solid var(--colour-primary);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.title {
   margin: 0;
+  font-variant: small-caps;
+  font-weight: 100;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background: lemonchiffon;
+}
+
+.app__title {
+  font-size: 48px;
+  background: var(--colour-primary);
+}
+
+.app__content {
+  display: flex;
+  align-items: flex-start;
+
+  max-width: 1280px;
+  margin: var(--content-mt) auto 0;
+}
+
+.basket {
+  position: sticky;
+  top: var(--content-mt);
+  width: 450px;
+  padding: 10px;
+}
+
+.basket__items {
+  list-style: none;
+  padding: 0;
+}
+
+.basket__item {
+  display: flex;
+  margin: 16px 0;
+  border-bottom: 1px dotted currentColor;
+}
+
+.basket__item span {
+  display: block;
+  margin-bottom: -5px;
+  padding: 1px;
+  background: white;
+}
+
+.basket__item__subtotal {
+  margin-left: auto;
+}
+
+.basket__total {
+  padding: 16px 0 0;
+  border-top: 1px solid currentColor;
+  text-align: right;
+}
+
+.menu {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--item-w), 1fr));
+  grid-gap: 20px;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0 20px 20px;
+  list-style: none;
+}
+
+.item {
+  /* box-shadow: 0 3px 10px #666; */
+}
+
+.item__image {
+  display: block;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.item__footer {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 5px 0;
+}
+
+.item__label,
+.item__price {
+  margin: 0;
+  padding: 0 5px;
+}
+
+.item__label {
+  flex: 1;
+}
+
+.item__control {
+  --wh: 25px;
+  all: unset;
+
+  align-self: flex-start;
+
+  width: var(--wh);
+  height: var(--wh);
+  text-align: center;
 }
