@@ -1,6 +1,9 @@
 import React from "react";
 
-const MenuItem = ({ item, itemAdd, itemRemove }) => {
+import ItemControls from "./item-controls";
+import { fmtCurrency } from "../utils";
+
+const MenuItem = ({ item, quantity, itemAdd, itemRemove }) => {
   const { id, image, name, price } = item;
   const onClickAdd = () => itemAdd(id);
   const onClickRemove = () => itemRemove(id);
@@ -10,19 +13,12 @@ const MenuItem = ({ item, itemAdd, itemRemove }) => {
       <img className="item__image" src={image} />
       <footer className="item__footer">
         <p className="item__label">{name}</p>
-        <p className="item__price">£{price}</p>
-        <button
-          className="item__control item__control--minus"
-          onClick={onClickRemove}
-        >
-          <img src="/static/icons/minus-circle.svg" alt="remove from basket" />
-        </button>
-        <button
-          className="item__control item__control--plus"
-          onClick={onClickAdd}
-        >
-          <img src="/static/icons/plus-circle.svg" alt="add to basket" />
-        </button>
+        <p className="item__price">{fmtCurrency(price)}</p>
+        <ItemControls
+          quantity={quantity}
+          onClickAdd={onClickAdd}
+          onClickRemove={onClickRemove}
+        />
       </footer>
     </li>
   );

@@ -1,5 +1,6 @@
 :root {
   --item-w: 220px;
+  --item-control-wh: 25px;
   --content-mt: 20px;
   --colour-primary: aquamarine;
 }
@@ -25,8 +26,17 @@ body {
 }
 
 .app__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-size: 48px;
   background: var(--colour-primary);
+}
+
+.app__title span {
+  margin: 7px 5px 0 5px;
+  font-size: 0.6em;
 }
 
 .app__content {
@@ -44,6 +54,18 @@ body {
   padding: 10px;
 }
 
+.basket__title {
+  font-size: 32px;
+  border-bottom: 3px solid var(--colour-primary);
+}
+
+.basket__cta {
+  margin: 0;
+  padding: 16px;
+  line-height: var(--item-control-wh);
+  text-align: center;
+}
+
 .basket__items {
   list-style: none;
   padding: 0;
@@ -51,11 +73,24 @@ body {
 
 .basket__item {
   display: flex;
+  align-items: center;
+
   margin: 16px 0;
+}
+
+.basket__item__content {
+  flex: 1;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-right: 10px;
   border-bottom: 1px dotted currentColor;
 }
 
-.basket__item span {
+.basket__item__label,
+.basket__item__subtotal {
   display: block;
   margin-bottom: -5px;
   padding: 1px;
@@ -67,6 +102,7 @@ body {
 }
 
 .basket__total {
+  margin: 0;
   padding: 16px 0 0;
   border-top: 1px solid currentColor;
   text-align: right;
@@ -112,13 +148,32 @@ body {
   flex: 1;
 }
 
-.item__control {
-  --wh: 25px;
-  all: unset;
+.item__controls {
+  flex: 0 0 auto;
 
+  display: flex;
+  align-items: center;
+}
+
+.item__control {
   align-self: flex-start;
 
-  width: var(--wh);
-  height: var(--wh);
+  transition: opacity 0.3s;
+  width: var(--item-control-wh);
+  height: var(--item-control-wh);
+  padding: 0;
+  border: none;
   text-align: center;
+  cursor: pointer;
+  background: none;
+}
+
+.item__control img {
+  width: 70%;
+  margin-top: 15%;
+}
+
+.item__control:disabled {
+  cursor: initial;
+  opacity: 0.25;
 }

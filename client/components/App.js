@@ -48,20 +48,25 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1 className="title app__title">Mondo Gateaux</h1>
-        <div className="app__content">
-          <ul className="menu">
-            {Object.entries(this.state.menu).map(([id, item]) => (
+        <ul className="menu">
+          {Object.entries(this.state.menu).map(([id, item]) => {
+            return (
               <MenuItem
                 key={id}
                 item={item}
                 itemAdd={this.itemAdd}
                 itemRemove={this.itemRemove}
+                quantity={this.state.order[id] || 0}
               />
-            ))}
-          </ul>
-          <Basket order={this.state.order} menu={this.state.menu} />
-        </div>
+            );
+          })}
+        </ul>
+        <Basket
+          order={this.state.order}
+          menu={this.state.menu}
+          itemAdd={this.itemAdd}
+          itemRemove={this.itemRemove}
+        />
       </React.Fragment>
     );
   }
