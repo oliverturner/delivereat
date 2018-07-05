@@ -7,7 +7,6 @@ const menu = require("../data/menu.json");
 const storage = require("./storage.js")({ menu });
 
 const app = express();
-
 const isProd = process.env.NODE_ENV === "production";
 
 app.use(bodyParser.json());
