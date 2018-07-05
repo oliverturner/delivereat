@@ -1,0 +1,31 @@
+.item__controls {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+}
+
+.item__control {
+  align-self: flex-start;
+
+  transition: opacity 0.3s;
+  width: var(--item-control-wh);
+  height: var(--item-control-wh);
+  padding: 0;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+
+  &:disabled {
+    cursor: initial;
+    opacity: 0.25;
+  }
+}
+
+.item__control__icon {
+  width: calc(var(--item-control-wh) * 0.8);
+  height: calc(var(--item-control-wh) * 0.8);
+  fill: var(--colour-primary-text);
+  stroke: white;
+}

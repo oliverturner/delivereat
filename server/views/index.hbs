@@ -1,38 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DeliverEAT</title>
-  <link rel="stylesheet" type="text/css" href="/static/reset.css">
-  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <link rel="stylesheet" type="text/css" href="/static/reset.css"> {{#if isProd}}
+  <link rel="stylesheet" type="text/css" href="/static/main.css"> {{/if}}
 </head>
 
 <body>
   <div class="app">
-    <h1 class="title app__title">Chateau <span>❦</span> Gateaux</h1>
+    <h1 class="title app__title">Chateau
+      <span>❦</span> Gateaux</h1>
     <div class="app__content" id="root">
       <ul class="menu">
-        {{#each menu}}
-        <li class="card item">
-          <img class="item__image" src={{this.image}} />
-          <footer class="item__footer">
-            <p class="item__label">{{this.name}}</p>
-            <p class="item__price">£{{this.price}}</p>
-            <button class="item__control item__control--minus">
-              <img src="/static/icons/minus-circle.svg" alt="remove from basket">
-            </button>
-            <button class="item__control item__control--plus">
-              <img src="/static/icons/plus-circle.svg" alt="add to basket">
-            </button>
-          </footer>
-        </li>
-        {{/each}}
+        {{#each menu}}{{> menu_item }}{{/each}}
       </ul>
       <div class="card basket">
         <h2 class="title basket__title">Your Basket</h2>
+        <p class="basket__cta">Got cake?</p>
+        <p class="basket__total">TOTAL: 0.00</p>
       </div>
     </div>
   </div>
+
+
+  <svg class="visually-hidden" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="circle-minus" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="8" y1="12" x2="16" y2="12"></line>
+      </symbol>
+      <symbol id="circle-plus" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="16"></line>
+        <line x1="8" y1="12" x2="16" y2="12"></line>
+      </symbol>
+      <symbol id="circle-x" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="15" y1="9" x2="9" y2="15"></line>
+        <line x1="9" y1="9" x2="15" y2="15"></line>
+      </symbol>
+    </defs>
+  </svg>
+
   <script src="/static/bundle.js"></script>
 </body>
 

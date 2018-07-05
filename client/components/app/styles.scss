@@ -1,0 +1,42 @@
+.app__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  font-size: 48px;
+  background: var(--colour-primary);
+  color: var(--colour-primary-text);
+
+  @media (min-width: 768px) {
+    position: static;
+  }
+}
+
+.app__title span {
+  margin: 7px 5px 0 5px;
+  font-size: 0.6em;
+}
+
+.app__content {
+  display: flex;
+  align-items: flex-start;
+
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--content-mt);
+}
+
+.menu {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--item-w), 1fr));
+  grid-gap: 20px;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

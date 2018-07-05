@@ -1,0 +1,27 @@
+:root {
+  --item-w: 200px;
+  --item-control-wh: 25px;
+  --content-mt: 20px;
+  --colour-primary: aquamarine;
+  --colour-primary-text: #664b34;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background: lemonchiffon;
+  color: #222;
+}
+
+.card {
+  padding: 5px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.title {
+  margin: 0;
+  font-variant: small-caps;
+  font-weight: 100;
+  text-align: center;
+  text-transform: lowercase;
+}

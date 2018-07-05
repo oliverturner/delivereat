@@ -1,0 +1,41 @@
+.item {
+  box-shadow: 0 3px 10px #666;
+}
+
+.item__image {
+  display: block;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.item__footer {
+  display: grid;
+  grid-gap: 0 10px;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "a b"
+    "a c";
+
+  padding: 5px 0 0;
+
+  .item__label {
+    grid-area: a;
+  }
+
+  .item__price {
+    grid-area: b;
+  }
+
+  .item__controls {
+    grid-area: c;
+  }
+}
+
+.item__label,
+.item__price {
+  margin: 0;
+}
+
+.item__price {
+  text-align: right;
+}

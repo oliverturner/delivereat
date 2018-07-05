@@ -1,7 +1,7 @@
 import React from "react";
 
-import ItemControls from "./item-controls";
-import { fmtCurrency } from "../utils";
+import ItemControls from "../item-controls";
+import { fmtCurrency } from "../../utils";
 
 const BasketItem = ({ item, itemAdd, itemRemove }) => {
   const { id, name, quantity, subtotal } = item;

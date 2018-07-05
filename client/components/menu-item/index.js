@@ -1,7 +1,8 @@
 import React from "react";
 
-import ItemControls from "./item-controls";
-import { fmtCurrency } from "../utils";
+import "./styles.scss";
+import ItemControls from "../item-controls";
+import { fmtCurrency } from "../../utils";
 
 const MenuItem = ({ item, quantity, itemAdd, itemRemove }) => {
   const { id, image, name, price } = item;

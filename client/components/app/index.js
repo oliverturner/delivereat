@@ -1,7 +1,8 @@
 import React from "react";
 
-import MenuItem from "./menu-item";
-import Basket from "./basket";
+import "./styles.scss";
+import MenuItem from "../menu-item";
+import Basket from "../basket";
 
 class App extends React.Component {
   constructor() {
@@ -9,11 +10,13 @@ class App extends React.Component {
 
     this.state = {
       menu: {},
-      order: {}
+      order: {},
+      basketDisplayed: false
     };
 
     this.itemAdd = this.itemAdd.bind(this);
     this.itemRemove = this.itemRemove.bind(this);
+    this.toggleBasket = this.toggleBasket.bind(this);
   }
 
   componentDidMount() {
@@ -45,9 +48,18 @@ class App extends React.Component {
     }
   }
 
+  toggleBasket() {
+    this.setState({
+      basketDisplayed: !this.state.basketDisplayed
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
+        <button className="basket__openbtn" onClick={this.toggleBasket}>
+          Basket
+        </button>
         <ul className="menu">
           {Object.entries(this.state.menu).map(([id, item]) => {
             return (
@@ -66,6 +78,8 @@ class App extends React.Component {
           menu={this.state.menu}
           itemAdd={this.itemAdd}
           itemRemove={this.itemRemove}
+          toggleDisplay={this.toggleBasket}
+          displayed={this.state.basketDisplayed}
         />
       </React.Fragment>
     );

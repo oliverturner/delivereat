@@ -1,0 +1,19 @@
+<li class="card item">
+  <img class="item__image" src={{this.image}} />
+  <footer class="item__footer">
+    <p class="item__label">{{this.name}}</p>
+    <p class="item__price">£{{this.price}}</p>
+    <div class="item__controls">
+      <button class="item__control item__control--minus" disabled>
+        <svg class="item__control__icon">
+          <use xlink:href="#circle-minus" />
+        </svg>
+      </button>
+      <button class="item__control item__control--plus">
+        <svg class="item__control__icon">
+          <use xlink:href="#circle-plus" />
+        </svg>
+      </button>
+    </div>
+  </footer>
+</li>

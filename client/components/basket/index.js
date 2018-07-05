@@ -1,9 +1,17 @@
 import React from "react";
 
+import "./styles.scss";
 import BasketItem from "./basket-item";
-import { fmtCurrency } from "../utils";
+import { fmtCurrency } from "../../utils";
 
-const Basket = ({ order, menu, itemAdd, itemRemove }) => {
+const Basket = ({
+  order,
+  menu,
+  itemAdd,
+  itemRemove,
+  toggleDisplay,
+  displayed
+}) => {
   const basket = Object.entries(order).reduce(
     (acc, [menuId, quantity]) => {
       const { id, name, price } = menu[menuId];
@@ -38,11 +46,21 @@ const Basket = ({ order, menu, itemAdd, itemRemove }) => {
     return <p className="basket__cta">Got cake?</p>;
   };
 
+  const cls = displayed ? "card basket" : "card basket basket--closed";
+
   return (
-    <div className="card basket">
-      <h2 className="title basket__title">Your Basket</h2>
+    <div className={cls}>
+      <header className="basket__header">
+        <h2 className="title basket__title">Your Basket</h2>
+        <button className="basket__closebtn" onClick={toggleDisplay}>
+          Close
+        </button>
+      </header>
       {basket.total ? showItems(basket.subtotals) : showCTA()}
-      <p className="basket__total">TOTAL: {fmtCurrency(basket.total)}</p>
+      <footer className="basket__footer">
+        <p className="basket__total">TOTAL: {fmtCurrency(basket.total)}</p>
+        <button className="title basket__checkoutbtn">Checkout</button>
+      </footer>
     </div>
   );
 };
