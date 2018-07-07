@@ -3,6 +3,7 @@ import React from "react";
 import "./styles.scss";
 import MenuItem from "../menu-item";
 import Basket from "../basket";
+import { fmtCurrency } from "../../utils";
 
 class App extends React.Component {
   constructor() {
@@ -54,11 +55,34 @@ class App extends React.Component {
     });
   }
 
+  calcBasket(order, menu) {
+    return Object.entries(order).reduce(
+      (acc, [menuId, quantity]) => {
+        const { id, name, price } = menu[menuId];
+        const subtotal = quantity * price;
+        acc.subtotals.push({ id, name, quantity, subtotal });
+        acc.total = acc.total + subtotal;
+
+        return acc;
+      },
+      {
+        subtotals: [],
+        total: 0
+      }
+    );
+  }
+
   render() {
+    const { order, menu } = this.state;
+    const basket = this.calcBasket(order, menu);
+
     return (
       <React.Fragment>
         <button className="basket__openbtn" onClick={this.toggleBasket}>
-          Basket
+          <svg className="basket__openbtn__icon">
+            <use xlinkHref="#basket" />
+          </svg>
+          {fmtCurrency(basket.total)}
         </button>
         <ul className="menu">
           {Object.entries(this.state.menu).map(([id, item]) => {
@@ -74,8 +98,7 @@ class App extends React.Component {
           })}
         </ul>
         <Basket
-          order={this.state.order}
-          menu={this.state.menu}
+          basket={basket}
           itemAdd={this.itemAdd}
           itemRemove={this.itemRemove}
           toggleDisplay={this.toggleBasket}

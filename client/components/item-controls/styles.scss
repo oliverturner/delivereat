@@ -1,16 +1,16 @@
+@import "../../styles/colours";
+@import "../../styles/dimensions";
+
 .item__controls {
   flex: 0 0 auto;
-
-  display: flex;
-  align-items: center;
 }
 
 .item__control {
-  align-self: flex-start;
-
   transition: opacity 0.3s;
-  width: var(--item-control-wh);
-  height: var(--item-control-wh);
+
+  overflow: hidden;
+  width: $item-control-wh;
+  height: $item-control-wh;
   padding: 0;
   border: none;
   text-align: center;
@@ -24,8 +24,8 @@
 }
 
 .item__control__icon {
-  width: calc(var(--item-control-wh) * 0.8);
-  height: calc(var(--item-control-wh) * 0.8);
-  fill: var(--colour-primary-text);
+  width: $item-control-wh * 0.8;
+  height: $item-control-wh * 0.8;
+  fill: $colour-primary-text;
   stroke: white;
 }

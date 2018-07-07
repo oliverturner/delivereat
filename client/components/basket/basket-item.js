@@ -16,7 +16,7 @@ const BasketItem = ({ item, itemAdd, itemRemove }) => {
         </span>
         <span className="basket__item__subtotal">{fmtCurrency(subtotal)}</span>
       </div>
-      <ItemControls onClickAdd={onClickAdd} onClickRemove={onClickRemove} />
+      <ItemControls quantity={quantity} onClickAdd={onClickAdd} onClickRemove={onClickRemove} />
     </li>
   );
 };

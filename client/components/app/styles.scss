@@ -1,16 +1,28 @@
+@import "../../styles/colours";
+@import "../../styles/dimensions";
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  overflow: hidden;
+  height: 100vh;
+}
+
 .app__title {
   display: flex;
-  justify-content: center;
   align-items: center;
+  font-size: 38px;
+  line-height: 48px;
+  padding: 0 5px;
 
-  position: sticky;
-  top: 0;
-  font-size: 48px;
-  background: var(--colour-primary);
-  color: var(--colour-primary-text);
+  background: $colour-primary-bg;
+  color: $colour-primary-text;
 
   @media (min-width: 768px) {
-    position: static;
+    justify-content: center;
+
+    font-size: 48px;
   }
 }
 
@@ -23,20 +35,23 @@
   display: flex;
   align-items: flex-start;
 
-  max-width: 1280px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: var(--content-mt);
 }
 
 .menu {
   flex: 1;
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--item-w), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax($item-w, 1fr));
   grid-gap: 20px;
   justify-content: center;
 
+  height: 100%;
+  overflow-y: scroll;
   margin: 0;
-  padding: 0;
+  padding: $content-mt;
   list-style: none;
 }

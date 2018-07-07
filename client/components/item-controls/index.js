@@ -2,8 +2,8 @@ import React from "react";
 
 import "./styles.scss";
 
-const ItemControls = ({ onClickAdd, onClickRemove, quantity }) => {
-  const disabled = typeof quantity !== "undefined" && quantity < 1;
+const ItemControls = ({ onClickAdd, onClickRemove, quantity = 0 }) => {
+  const disabled = quantity < 1;
 
   return (
     <div className="item__controls">
@@ -15,6 +15,7 @@ const ItemControls = ({ onClickAdd, onClickRemove, quantity }) => {
         <svg className="item__control__icon">
           <use xlinkHref="#circle-minus" />
         </svg>
+        <span className="visually-hidden">Remove item</span>
       </button>
       <button
         className="item__control item__control--plus"
@@ -23,6 +24,7 @@ const ItemControls = ({ onClickAdd, onClickRemove, quantity }) => {
         <svg className="item__control__icon">
           <use xlinkHref="#circle-plus" />
         </svg>
+        <span className="visually-hidden">Add item</span>
       </button>
     </div>
   );

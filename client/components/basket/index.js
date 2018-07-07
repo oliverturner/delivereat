@@ -4,29 +4,7 @@ import "./styles.scss";
 import BasketItem from "./basket-item";
 import { fmtCurrency } from "../../utils";
 
-const Basket = ({
-  order,
-  menu,
-  itemAdd,
-  itemRemove,
-  toggleDisplay,
-  displayed
-}) => {
-  const basket = Object.entries(order).reduce(
-    (acc, [menuId, quantity]) => {
-      const { id, name, price } = menu[menuId];
-      const subtotal = quantity * price;
-      acc.subtotals.push({ id, name, quantity, subtotal });
-      acc.total = acc.total + subtotal;
-
-      return acc;
-    },
-    {
-      subtotals: [],
-      total: 0
-    }
-  );
-
+const Basket = ({ basket, itemAdd, itemRemove, toggleDisplay, displayed }) => {
   const showItems = subtotals => {
     return (
       <ul className="basket__items">
@@ -56,7 +34,9 @@ const Basket = ({
           Close
         </button>
       </header>
-      {basket.total ? showItems(basket.subtotals) : showCTA()}
+      <div className="basket__content">
+        {basket.total ? showItems(basket.subtotals) : showCTA()}
+      </div>
       <footer className="basket__footer">
         <p className="basket__total">TOTAL: {fmtCurrency(basket.total)}</p>
         <button className="title basket__checkoutbtn">Checkout</button>
