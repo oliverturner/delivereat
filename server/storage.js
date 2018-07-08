@@ -8,7 +8,7 @@ const processRawData = (acc, [_, value]) => {
 
 function storage(data) {
   const products = Object.entries(data.products).reduce(processRawData, {});
-  const orders = {};
+  let orders = {};
 
   // Products
   //---------------------------------------
@@ -48,22 +48,22 @@ function storage(data) {
   //---------------------------------------
   const getOrders = () => orders;
 
-  const createOrder = () => {
-    const newId = uniqid();
-    const item = { ...data, id: newId };
-    orders = { ...orders, [newId]: item };
+  const createOrder = items => {
+    const id = uniqid();
+    const newOrder = { id, items };
+    orders = {...orders, [id]: newOrder};
 
-    return item;
+    return newOrder;
   };
 
   const readOrder = id => orders[id];
 
-  const updateOrder = (id, data) => {
-    const item = orders[id];
-    const updatedItem = { ...item, ...data };
-    orders[id] = updatedItem;
+  const updateOrder = (id, items) => {
+    const order = orders[id];
+    const updatedOrder = { ...order, items };
+    orders = {...orders, [id]: updatedOrder};
 
-    return updatedItem;
+    return updatedOrder;
   };
 
   const deleteOrder = id => {

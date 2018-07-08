@@ -1,32 +1,45 @@
 import { actions } from "../actions/order";
 
-const itemAdd = (state, id) => {
-  const quantity = state[id] || 0;
-  const newQuantity = quantity + 1;
-
-  return { ...state, [id]: newQuantity };
+const initialState = {
+  loading: false,
+  items: {}
 };
 
-const itemRemove = (state, id) => {
-  const quantity = state[id] || 0;
+const itemAdd = (items, id) => {
+  const quantity = items[id] || 0;
+  const newQuantity = quantity + 1;
+
+  return { ...items, [id]: newQuantity };
+};
+
+const itemRemove = (items, id) => {
+  const quantity = items[id] || 0;
   const newQuantity = quantity - 1;
 
   if (newQuantity > 0) {
-    return { ...state, [id]: newQuantity };
-  } 
-  
-  const { [id]: idToOmit, ...newState } = state;
-  return newState;
+    return { ...items, [id]: newQuantity };
+  }
+
+  const { [id]: idToOmit, ...newItems } = items;
+  return newItems;
 };
 
-const basket = (state = {}, action) => {
+const basket = (state = initialState, action) => {
   switch (action.type) {
     case actions.ITEM_ADD:
-      state = itemAdd(state, action.payload);
+      state = { ...state, items: itemAdd(state.items, action.payload) };
       return state;
 
     case actions.ITEM_REMOVE:
-      state = itemRemove(state, action.payload);
+      state = { ...state, items: itemRemove(state.items, action.payload) };
+      return state;
+
+    case actions.ORDER_SAVING:
+      state = { ...state, loading: true };
+      return state;
+
+    case actions.ORDER_SAVED:
+      state = { loading: false, items: {} };
       return state;
 
     default:

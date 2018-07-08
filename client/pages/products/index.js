@@ -36,7 +36,7 @@ class Products extends React.Component {
     if (this.state.checkedOut) return <Redirect to={from || "/checkout"} />;
 
     const { products, order } = this.props;
-    const basket = calcBasket(order, products.items);
+    const basket = calcBasket(order.items, products.items);
 
     return (
       <React.Fragment>
@@ -46,7 +46,7 @@ class Products extends React.Component {
         />
         <ul className="products">
           {Object.entries(products.items).map(([id, item]) => {
-            return <Product key={id} item={item} quantity={order[id] || 0} />;
+            return <Product key={id} item={item} quantity={order.items[id] || 0} />;
           })}
         </ul>
         <Basket

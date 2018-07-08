@@ -3,21 +3,25 @@ export const actions = {
   PRODUCTS_LOADED: "PRODUCTS_LOADED"
 };
 
-const onProductsLoading = results => ({
+//  Action creators
+//------------------------------------------------------------------------------
+const loadingAction = () => ({
   type: actions.PRODUCTS_LOADING
 });
 
-const onProductsLoaded = results => ({
+const loadedAction = results => ({
   type: actions.PRODUCTS_LOADED,
   payload: results
 });
 
+//  Dispatchers
+//------------------------------------------------------------------------------
 const fetchProducts = () => dispatch => {
-  dispatch(onProductsLoading())
+  dispatch(loadingAction());
 
   return fetch("/api/products")
     .then(res => (res.ok ? res.json() : Promise.reject(res)))
-    .then(products => dispatch(onProductsLoaded(products)))
+    .then(products => dispatch(loadedAction(products)))
     .catch(error => console.log(error));
 };
 
