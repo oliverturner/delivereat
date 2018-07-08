@@ -4,3 +4,20 @@ export const fmtCurrency = price => {
     currency: "GBP"
   });
 };
+
+export const calcBasket = (order, menu) => {
+  return Object.entries(order).reduce(
+    (acc, [menuId, quantity]) => {
+      const { id, name, price } = menu[menuId];
+      const subtotal = quantity * price;
+      acc.subtotals.push({ id, name, quantity, subtotal });
+      acc.total = acc.total + subtotal;
+
+      return acc;
+    },
+    {
+      subtotals: [],
+      total: 0
+    }
+  );
+};

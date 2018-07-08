@@ -6,15 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DeliverEAT</title>
-  <link rel="stylesheet" type="text/css" href="/static/reset.css"> {{#if isProd}}
-  <link rel="stylesheet" type="text/css" href="/static/main.css"> {{/if}}
+  <link rel="stylesheet" type="text/css" href="/static/reset.css"> 
+  {{#if isProd}}
+    <link rel="stylesheet" type="text/css" href="/static/main.css"> 
+  {{/if}}
 </head>
 
 <body>
-  <div class="app">
-    <h1 class="title app__title">Chateau
-      <span>❦</span> Gateaux</h1>
-    <div class="app__content" id="root">
+  <div class="app" id="root">
+    <h1 class="title app__title">
+      <a href="/">Chateau<span aria-hidden="true">❦</span>Gateaux</a>
+    </h1>
+    <div class="app__content">
       <ul class="menu">
         {{#each menu}}{{> menu_item }}{{/each}}
       </ul>

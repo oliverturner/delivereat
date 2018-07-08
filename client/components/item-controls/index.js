@@ -11,6 +11,7 @@ const ItemControls = ({ onClickAdd, onClickRemove, quantity = 0 }) => {
         className="item__control item__control--minus"
         onClick={onClickRemove}
         disabled={disabled}
+        type="button"
       >
         <svg className="item__control__icon">
           <use xlinkHref="#circle-minus" />
@@ -20,6 +21,7 @@ const ItemControls = ({ onClickAdd, onClickRemove, quantity = 0 }) => {
       <button
         className="item__control item__control--plus"
         onClick={onClickAdd}
+        type="button"
       >
         <svg className="item__control__icon">
           <use xlinkHref="#circle-plus" />

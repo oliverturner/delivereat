@@ -17,12 +17,14 @@ hbs.registerPartials(__dirname + "/views/partials");
 
 //  Pages
 //------------------------------------------------------------------------------
-app.get("/", function(req, res) {
+function renderHome(req, res) {
   res.render("index", {
     isProd,
     menu: storage.getMenu()
   });
-});
+}
+
+app.get("/", renderHome);
 
 //  API
 //------------------------------------------------------------------------------
@@ -78,6 +80,10 @@ app.delete("/api/orders/:id", function(req, res) {
   const newItem = storage.deleteOrder(req.params.id, req.body);
   res.status(204).json(newItem);
 });
+
+//  Wildcard
+//---------------------------------------
+app.get("*", renderHome);
 
 //  Start server
 //------------------------------------------------------------------------------

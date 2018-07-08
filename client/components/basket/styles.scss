@@ -106,6 +106,8 @@
 .basket__checkoutbtn {
   flex-shrink: 0;
 
+  transition: opacity 0.3s;
+
   width: 100%;
   margin-top: 10px;
   padding: 5px;
@@ -116,6 +118,11 @@
   letter-spacing: 2px;
   background: $colour-primary-bg;
   color: $colour-primary-text;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .basket__items {
