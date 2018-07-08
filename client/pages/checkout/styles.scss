@@ -1,0 +1,40 @@
+@import "../../styles/colours";
+@import "../../styles/dimensions";
+
+.checkout {
+  width: 100%;
+  max-width: 768px;
+  margin: $content-mt auto;
+}
+
+.checkout__order {
+  padding: 10px;
+  background: #fff;
+
+  @media (min-width: 768px) {
+    border: 2px solid $colour-primary-bg;
+    border-radius: 5px;
+  }
+}
+
+.checkout__savebtn {
+  flex-shrink: 0;
+
+  transition: opacity 0.3s;
+
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: $colour-primary-bg;
+  color: $colour-primary-text;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
