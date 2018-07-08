@@ -5,6 +5,12 @@ export const actions = {
   ORDER_SAVED: "ORDER_SAVED"
 };
 
+const saveToLocalStorage = data => {
+  const oldOrders = JSON.parse(localStorage.getItem("orders")) || {};
+  const newOrders = { ...oldOrders, [data.id]: data };
+  localStorage.setItem("orders", JSON.stringify(newOrders));
+};
+
 //  Action creators
 //------------------------------------------------------------------------------
 export const addAction = id => ({
@@ -42,15 +48,11 @@ const postOrder = order => dispatch => {
   return fetch("/api/orders", {
     method: "POST",
     body: JSON.stringify(order),
-    headers: {
-      "Content-Type": "application/json; charset=utf-8"
-    }
+    headers: { "Content-Type": "application/json" }
   })
     .then(res => (res.ok ? res.json() : Promise.reject(res)))
     .then(data => {
-      const oldOrders = JSON.parse(localStorage.getItem("orders")) || {};
-      const newOrders = { ...oldOrders, [data.id]: data };
-      localStorage.setItem("orders", JSON.stringify(newOrders));
+      saveToLocalStorage(data);
       dispatch(savedAction(data));
     })
     .catch(error => console.log(error));

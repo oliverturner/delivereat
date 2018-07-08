@@ -52,9 +52,9 @@ const mapStateToProps = ({ order, products }) => ({
   products
 });
 
-const mapDispatchToProps = dispatch => ({
-  saveOrder: items => dispatch(saveOrder(items))
-});
+const mapDispatchToProps = {
+  saveOrder
+};
 
 export default connect(
   mapStateToProps,

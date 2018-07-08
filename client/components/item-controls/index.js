@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import "./styles.scss";
-import * as basketActions from "../../actions/order";
+import { itemAdd, itemRemove } from "../../actions/order";
 
 const ItemControls = ({ id, quantity, itemAdd, itemRemove }) => {
   const removeDisabled = quantity < 1;
@@ -45,10 +45,10 @@ ItemControls.propTypes = {
   itemRemove: PropTypes.func
 };
 
-const mapDispatchToProps = dispatch => ({
-  itemAdd: id => dispatch(basketActions.itemAdd(id)),
-  itemRemove: id => dispatch(basketActions.itemRemove(id))
-});
+const mapDispatchToProps = {
+  itemAdd,
+  itemRemove
+};
 
 export default connect(
   null,
