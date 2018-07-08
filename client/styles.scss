@@ -1,1 +1,41 @@
+@import "styles/colours";
+@import "styles/dimensions";
 @import "styles/partials";
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  overflow: hidden;
+  height: 100vh;
+}
+
+.app__title {
+  display: flex;
+  align-items: center;
+  font-size: 38px;
+  line-height: 48px;
+  padding: 0 5px;
+
+  background: $colour-primary-bg;
+  color: $colour-primary-text;
+
+  @media (min-width: 768px) {
+    justify-content: center;
+  }
+
+  & span {
+    margin: 5px 5px 0;
+    font-size: 0.6em;
+  }
+}
+
+.app__content {
+  display: flex;
+  align-items: flex-start;
+
+  overflow: hidden;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
