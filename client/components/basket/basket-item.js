@@ -5,8 +5,6 @@ import { fmtCurrency } from "../../utils";
 
 const BasketItem = ({ item, itemAdd, itemRemove }) => {
   const { id, name, quantity, subtotal } = item;
-  const onClickAdd = () => itemAdd(id);
-  const onClickRemove = () => itemRemove(id);
 
   return (
     <li className="basket__item" key={`basket-${id}`}>
@@ -16,7 +14,7 @@ const BasketItem = ({ item, itemAdd, itemRemove }) => {
         </span>
         <span className="basket__item__subtotal">{fmtCurrency(subtotal)}</span>
       </div>
-      <ItemControls quantity={quantity} onClickAdd={onClickAdd} onClickRemove={onClickRemove} />
+      <ItemControls id={id} quantity={quantity} />
     </li>
   );
 };

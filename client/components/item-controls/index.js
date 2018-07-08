@@ -1,16 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import "./styles.scss";
+import * as basketActions from "../../actions/order";
 
-const ItemControls = ({ onClickAdd, onClickRemove, quantity = 0 }) => {
-  const disabled = quantity < 1;
+const ItemControls = ({ id, quantity, itemAdd, itemRemove }) => {
+  const removeDisabled = quantity < 1;
 
   return (
     <div className="item__controls">
       <button
         className="item__control item__control--minus"
-        onClick={onClickRemove}
-        disabled={disabled}
+        onClick={() => itemRemove(id)}
+        disabled={removeDisabled}
         type="button"
       >
         <svg className="item__control__icon">
@@ -20,7 +23,7 @@ const ItemControls = ({ onClickAdd, onClickRemove, quantity = 0 }) => {
       </button>
       <button
         className="item__control item__control--plus"
-        onClick={onClickAdd}
+        onClick={() => itemAdd(id)}
         type="button"
       >
         <svg className="item__control__icon">
@@ -32,4 +35,22 @@ const ItemControls = ({ onClickAdd, onClickRemove, quantity = 0 }) => {
   );
 };
 
-export default ItemControls;
+ItemControls.defaultProps = {
+  quantity: 0
+};
+
+ItemControls.propTypes = {
+  quantity: PropTypes.number,
+  itemAdd: PropTypes.func,
+  itemRemove: PropTypes.func
+};
+
+const mapDispatchToProps = dispatch => ({
+  itemAdd: id => dispatch(basketActions.itemAdd(id)),
+  itemRemove: id => dispatch(basketActions.itemRemove(id))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ItemControls);

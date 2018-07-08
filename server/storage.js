@@ -6,40 +6,40 @@ const processRawData = (acc, [_, value]) => {
   return { ...acc, [newId]: item };
 };
 
-function storage({ rawMenu }) {
-  const menu = Object.entries(rawMenu).reduce(processRawData, {});
+function storage(data) {
+  const products = Object.entries(data.products).reduce(processRawData, {});
   const orders = {};
 
-  // Menu
+  // Products
   //---------------------------------------
-  const getMenu = () => menu;
+  const getProducts = () => products;
 
-  const createMenuItem = data => {
+  const createProduct = data => {
     const id = uniqid();
     const item = { ...data, id };
-    menu[id] = item;
+    products[id] = item;
 
     return item;
   };
 
-  const readMenuItem = id => {
-    return menu[id];
+  const readProduct = id => {
+    return products[id];
   };
 
-  const updateMenuItem = (id, data) => {
-    const item = menu[id];
+  const updateProduct = (id, data) => {
+    const item = products[id];
     if (item) {
       const updatedItem = { ...item, ...data };
-      menu[id] = updatedItem;
+      products[id] = updatedItem;
 
       return updatedItem;
     }
   };
 
-  const deleteMenuItem = id => {
-    const item = menu[id];
+  const deleteProduct = id => {
+    const item = products[id];
     if (item) {
-      delete menu[id];
+      delete products[id];
       return item;
     }
   };
@@ -71,11 +71,11 @@ function storage({ rawMenu }) {
   };
 
   return {
-    getMenu,
-    createMenuItem,
-    readMenuItem,
-    updateMenuItem,
-    deleteMenuItem,
+    getProducts,
+    createProduct,
+    readProduct,
+    updateProduct,
+    deleteProduct,
 
     getOrders,
     createOrder,

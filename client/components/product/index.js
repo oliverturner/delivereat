@@ -1,13 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./styles.scss";
 import ItemControls from "../item-controls";
 import { fmtCurrency } from "../../utils";
 
-const MenuItem = ({ item, quantity, itemAdd, itemRemove }) => {
+const Product = ({ item, quantity }) => {
   const { id, image, name, price } = item;
-  const onClickAdd = () => itemAdd(id);
-  const onClickRemove = () => itemRemove(id);
 
   return (
     <li className="card item">
@@ -15,14 +14,20 @@ const MenuItem = ({ item, quantity, itemAdd, itemRemove }) => {
       <footer className="item__footer">
         <p className="item__label">{name}</p>
         <p className="item__price">{fmtCurrency(price)}</p>
-        <ItemControls
-          quantity={quantity}
-          onClickAdd={onClickAdd}
-          onClickRemove={onClickRemove}
-        />
+        <ItemControls id={id} quantity={quantity} />
       </footer>
     </li>
   );
 };
 
-export default MenuItem;
+Product.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number
+  }),
+  quantity: PropTypes.number
+};
+
+export default Product;

@@ -3,8 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const hbs = require("hbs");
 
-const rawMenu = require("../data/menu.json");
-const storage = require("./storage.js")({ rawMenu });
+const storage = require("./storage.js")({ 
+  products: require("../data/products.json")
+});
 
 const app = express();
 const isProd = process.env.NODE_ENV === "production";
@@ -20,7 +21,7 @@ hbs.registerPartials(__dirname + "/views/partials");
 function renderHome(req, res) {
   res.render("index", {
     isProd,
-    menu: storage.getMenu()
+    products: storage.getProducts()
   });
 }
 
@@ -28,29 +29,29 @@ app.get("/", renderHome);
 
 //  API
 //------------------------------------------------------------------------------
-//  Menu
+//  Products
 //---------------------------------------
-app.get("/api/menu", function(req, res) {
-  res.json(storage.getMenu());
+app.get("/api/products", function(req, res) {
+  res.json(storage.getProducts());
 });
 
-app.get("/api/menu/:id", function(req, res) {
-  const item = storage.readMenuItem(req.params.id);
+app.get("/api/products/:id", function(req, res) {
+  const item = storage.readProduct(req.params.id);
   item ? res.json(item) : res.status(404).json({ error: "Not found" });
 });
 
-app.post("/api/menu", function(req, res) {
-  const item = storage.createMenuItem(req.body);
+app.post("/api/products", function(req, res) {
+  const item = storage.createProduct(req.body);
   res.status(201).json(item);
 });
 
-app.patch("/api/menu/:id", function(req, res) {
-  const item = storage.updateMenuItem(req.params.id, req.body);
+app.patch("/api/products/:id", function(req, res) {
+  const item = storage.updateProduct(req.params.id, req.body);
   item ? res.json(item) : res.status(404).json({ error: "Not found" });
 });
 
-app.delete("/api/menu/:id", function(req, res) {
-  const item = storage.deleteMenuItem(req.params.id, req.body);
+app.delete("/api/products/:id", function(req, res) {
+  const item = storage.deleteProduct(req.params.id, req.body);
   item
     ? res.status(204).json(item)
     : res.status(404).json({ error: "Not found" });

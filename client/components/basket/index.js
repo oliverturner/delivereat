@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./styles.scss";
 import BasketItem from "./basket-item";
@@ -78,8 +79,12 @@ class Basket extends React.Component {
 
 Basket.defaultProps = {
   order: {},
-  menu: {},
+  products: {},
   basket: {}
 };
 
-export default Basket;
+const mapStateToProps = state => ({
+  products: state.products
+})
+
+export default connect(mapStateToProps)(Basket);

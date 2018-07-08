@@ -21,13 +21,12 @@
 
   @media (min-width: 768px) {
     justify-content: center;
-
-    font-size: 48px;
   }
 }
 
 .app__title span {
-  margin: 7px 5px 0 5px;
+  // margin: 7px 5px 0 5px;
+  margin: 0 5px 0 5px;
   font-size: 0.6em;
 }
 
@@ -41,7 +40,7 @@
   margin: 0 auto;
 }
 
-.menu {
+.products {
   flex: 1;
 
   display: grid;

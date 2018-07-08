@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
 import "./styles.scss";
-import MenuItem from "../../components/menu-item";
+import Product from "../../components/product";
 import Basket from "../../components/basket";
-import { fmtCurrency } from "../../utils";
+import BasketBtn from "../../components/basket/basket-btn";
+import { calcBasket, fmtCurrency } from "../../utils";
 
 class Products extends React.Component {
   constructor() {
@@ -33,38 +35,23 @@ class Products extends React.Component {
     const { from } = this.props.location.state || "/";
     if (this.state.checkedOut) return <Redirect to={from || "/checkout"} />;
 
-    const { menu, order, basket, itemAdd, itemRemove } = this.props;
+    const { products, order } = this.props;
+    const basket = calcBasket(order, products.items);
 
     return (
       <React.Fragment>
-        <button
-          className="basket__openbtn"
-          onClick={this.toggleBasket}
-          type="button"
-        >
-          <svg className="basket__openbtn__icon">
-            <use xlinkHref="#basket" />
-          </svg>
-          {fmtCurrency(basket.total)}
-        </button>
-        <ul className="menu">
-          {Object.entries(menu).map(([id, item]) => {
-            return (
-              <MenuItem
-                key={id}
-                item={item}
-                quantity={order[id] || 0}
-                itemAdd={itemAdd}
-                itemRemove={itemRemove}
-              />
-            );
+        <BasketBtn
+          total={fmtCurrency(basket.total)}
+          toggleBasket={this.toggleBasket}
+        />
+        <ul className="products">
+          {Object.entries(products.items).map(([id, item]) => {
+            return <Product key={id} item={item} quantity={order[id] || 0} />;
           })}
         </ul>
         <Basket
           basket={basket}
           displayed={this.state.basketDisplayed}
-          itemAdd={itemAdd}
-          itemRemove={itemRemove}
           toggleDisplay={this.toggleBasket}
           onCheckout={this.onCheckout}
         />
@@ -73,4 +60,9 @@ class Products extends React.Component {
   }
 }
 
-export default Products;
+const mapStateToProps = ({ order, products }) => ({
+  order,
+  products
+});
+
+export default connect(mapStateToProps)(Products);
