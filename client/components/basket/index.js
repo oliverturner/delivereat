@@ -17,17 +17,10 @@ class Basket extends React.Component {
     this.props.onCheckout();
   }
 
-  showItems(subtotals, itemAdd, itemRemove) {
+  showItems(subtotals) {
     return (
       <ul className="basket__items">
-        {subtotals.map(item => (
-          <BasketItem
-            key={item.id}
-            item={item}
-            itemAdd={itemAdd}
-            itemRemove={itemRemove}
-          />
-        ))}
+        {subtotals.map(item => <BasketItem key={item.id} item={item} />)}
       </ul>
     );
   }
@@ -37,13 +30,7 @@ class Basket extends React.Component {
   }
 
   render() {
-    const {
-      basket,
-      displayed,
-      itemAdd,
-      itemRemove,
-      toggleDisplay
-    } = this.props;
+    const { basket, displayed, toggleDisplay } = this.props;
     const cls = displayed ? "card basket" : "card basket basket--closed";
 
     return (
@@ -59,9 +46,7 @@ class Basket extends React.Component {
           </button>
         </header>
         <div className="basket__content">
-          {basket.total
-            ? this.showItems(basket.subtotals, itemAdd, itemRemove)
-            : this.showCTA()}
+          {basket.total ? this.showItems(basket.subtotals) : this.showCTA()}
         </div>
         <footer className="basket__footer">
           <p className="basket__total">TOTAL: {fmtCurrency(basket.total)}</p>
@@ -85,6 +70,6 @@ Basket.defaultProps = {
 
 const mapStateToProps = state => ({
   products: state.products
-})
+});
 
 export default connect(mapStateToProps)(Basket);

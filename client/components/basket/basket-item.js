@@ -3,7 +3,7 @@ import React from "react";
 import ItemControls from "../item-controls";
 import { fmtCurrency } from "../../utils";
 
-const BasketItem = ({ item, itemAdd, itemRemove }) => {
+const BasketItem = ({ item }) => {
   const { id, name, quantity, subtotal } = item;
 
   return (
