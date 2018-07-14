@@ -9,8 +9,8 @@ const Product = ({ item, quantity }) => {
   const { id, image, name, price } = item;
 
   return (
-    <li className="card item">
-      <img className="item__image" src={image} />
+    <li className="shadowed card item">
+      <img className="item__image" src={image} alt={`photo of ${name}`} />
       <footer className="item__footer">
         <p className="item__label">{name}</p>
         <p className="item__price">{fmtCurrency(price)}</p>

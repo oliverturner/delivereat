@@ -15,26 +15,24 @@ class App extends React.Component {
     return (
       <Router>
         <React.Fragment>
-          <Link to="/">
-            <h1 className="title app__title">
-              Chateau<span aria-hidden="true">❦</span>Gateaux
-            </h1>
-          </Link>
-          <div className="app__content">
+          <header className="app__header">
+            <Link to="/">
+              <h1 className="title app__title">
+                Chateau<span aria-hidden="true">❦</span>Gateaux
+              </h1>
+            </Link>
+          </header>
+          <main className="app__content">
             <Route exact path="/" component={Products} />
             <Route path="/checkout" component={Checkout} />
-          </div>
+          </main>
         </React.Fragment>
       </Router>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  loadProducts: () => dispatch(loadProducts())
-});
-
 export default connect(
   null,
-  mapDispatchToProps
+  { loadProducts }
 )(App);

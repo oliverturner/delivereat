@@ -27,20 +27,16 @@ const itemRemove = (items, id) => {
 const basket = (state = initialState, action) => {
   switch (action.type) {
     case actions.ITEM_ADD:
-      state = { ...state, items: itemAdd(state.items, action.payload) };
-      return state;
+      return { ...state, items: itemAdd(state.items, action.payload) };
 
     case actions.ITEM_REMOVE:
-      state = { ...state, items: itemRemove(state.items, action.payload) };
-      return state;
+      return { ...state, items: itemRemove(state.items, action.payload) };
 
     case actions.ORDER_SAVING:
-      state = { ...state, loading: true };
-      return state;
+      return { ...state, loading: true };
 
     case actions.ORDER_SAVED:
-      state = { loading: false, items: {} };
-      return state;
+      return { ...state, loading: false, items: {} };
 
     default:
       return state;

@@ -8,12 +8,10 @@ const initialState = {
 const products = (state = initialState, action) => {
   switch (action.type) {
     case actions.PRODUCTS_LOADING:
-      state = { ...state, loading: true };
-      return state;
+      return { ...state, loading: true };
 
     case actions.PRODUCTS_LOADED:
-      state = { ...state, loading: false, items: action.payload };
-      return state;
+      return { ...state, loading: false, items: action.payload };
 
     default:
       return state;

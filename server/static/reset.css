@@ -1,9 +1,14 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
-body {
+html {
   box-sizing: border-box;
+}
+
+body {
   margin: 0;
 }
 
@@ -11,12 +16,26 @@ figure {
   margin: 0;
 }
 
+img {
+  font-style: italic;
+}
+
+img,
+video,
+audio {
+  max-width: 100%;
+  height: auto;
+}
+
 a {
   text-decoration: none;
   color: inherit;
 }
 
-button {
+label,
+button,
+input,
+select {
   cursor: pointer;
 }
 
@@ -26,20 +45,49 @@ select {
   font: inherit;
 }
 
+textarea {
+  resize: vertical;
+}
+
+[disabled] {
+  cursor: default;
+}
+
+[aria-disabled="true"] {
+  cursor: default;
+  pointer-events: none;
+}
+
+::selection {
+  color: #000;
+  background: #fbd404;
+}
+
 /* Utility classes
 ------------------------------------------------------------------------------*/
 .visually-hidden {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0 !important;
-  border: 0 !important;
-  height: 1px !important;
-  width: 1px !important;
   overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }
 
 .unlist {
   list-style: none;
   padding: 0;
+}
+
+.shadowed {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* Media queries
+------------------------------------------------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

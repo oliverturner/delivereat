@@ -3,8 +3,6 @@ export const actions = {
   PRODUCTS_LOADED: "PRODUCTS_LOADED"
 };
 
-//  Action creators
-//------------------------------------------------------------------------------
 const loadingAction = () => ({
   type: actions.PRODUCTS_LOADING
 });
@@ -14,17 +12,11 @@ const loadedAction = results => ({
   payload: results
 });
 
-//  Dispatchers
-//------------------------------------------------------------------------------
-const fetchProducts = () => dispatch => {
+export const loadProducts = () => dispatch => {
   dispatch(loadingAction());
 
   return fetch("/api/products")
     .then(res => (res.ok ? res.json() : Promise.reject(res)))
     .then(products => dispatch(loadedAction(products)))
     .catch(error => console.log(error));
-};
-
-export const loadProducts = () => dispatch => {
-  dispatch(fetchProducts());
 };

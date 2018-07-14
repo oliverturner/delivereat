@@ -45,12 +45,7 @@ ItemControls.propTypes = {
   itemRemove: PropTypes.func
 };
 
-const mapDispatchToProps = {
-  itemAdd,
-  itemRemove
-};
-
 export default connect(
   null,
-  mapDispatchToProps
+  { itemAdd, itemRemove }
 )(ItemControls);
